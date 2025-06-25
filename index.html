@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Word & Character Counter</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    textarea { width: 100%; height: 150px; font-size: 1rem; }
+    .counter { margin-top: 1rem; font-size: 1.2rem; }
+    .counter span { margin-right: 2rem; }
+  </style>
+</head>
+<body>
+  <h2>Real-Time Word & Character Counter</h2>
+  <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+  <div class="counter">
+    <span>Words: <span id="wordCount">0</span></span>
+    <span>Characters: <span id="charCount">0</span></span>
+  </div>
+
+  <script>
+    const input = document.getElementById('inputText');
+    const wordCount = document.getElementById('wordCount');
+    const charCount = document.getElementById('charCount');
+
+    input.addEventListener('input', () => {
+      const text = input.value;
+      // Word count: split by whitespace, filter out empty strings
+      const words = text.trim().length > 0 ? text.trim().split(/\s+/).filter(Boolean) : [];
+      wordCount.textContent = words.length;
+      // Character count: count all characters (including whitespace)
+      charCount.textContent = text.length;
+    });
+  </script>
+</body>
+</html>
